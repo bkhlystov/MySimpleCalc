@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #calculator * {
+            font-size: 16px;
+        }
+
+        table {
+            border: solid 3px silver;
+            border-spacing: 3px;
+            background-color: #EEE;
+            margin: 0px auto;
+        }
+
+        table td {
+            border-spacing: 3px;
+        }
+
+        input.display {
+            width: 166px;
+            text-align: right;
+        }
+
+        td.buttons {
+            border-top: solid 1px silver;
+        }
+
+        input[type= button] {
+            width: 40px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <input type="text" name="input" size="16" class="display">
+            </td>
+        </tr>
+        <tr>
+            <td class="buttons">
+                <input type="button" name="one" value="1" OnClick="calc(this)">
+                <!--OnClick="calc.input.value += '1'"-->
+                <input type="button" name="two" value="2" OnClick="calc(this)">
+                <input type="button" name="three" value="3" OnClick="calc(this)">
+                <input type="button" name="add" value="+" OnClick="calc(this)">
+                <br>
+                <input type="button" name="four" value="4" OnClick="calc(this)">
+                <input type="button" name="five" value="5" OnClick="calc(this)">
+                <input type="button" name="six" value="6" OnClick="calc(this)">
+                <input type="button" name="sub" value="-" OnClick="calc(this)">
+                <br>
+                <input type="button" name="seven" value="7" OnClick="calc(this)">
+                <input type="button" name="eight" value="8" OnClick="calc(this)">
+                <input type="button" name="nine" value="9" OnClick="calc(this)">
+                <input type="button" name="mul" value="*"  OnClick="calc(this)">
+                <br>
+                <input type="button" name="clear" value="c" OnClick="Clear()">
+                <input type="button" name="zero" value="0" OnClick="calc(this)">
+                <input type="button" name="doit" value="=" OnClick="doIt()">
+                <input type="button" name="div" value="/" OnClick="calc(this)">
+                <br>
+                <input type="button" name="point" value="." OnClick="calc(this)">
+            </td>
+        </tr>
+    </table>
+<script type="text/javascript">
+    var res = document.querySelector('input:nth-of-type(1)');
+
+    function calc(_this) {
+        var arr = res.value.split('');
+        console.log(arr);
+        if ((arr[arr.length - 1] == '*' || arr[arr.length - 1] == undefined)  && _this.value == '*') {
+            res.value = res.value;
+        } else if ( (arr[arr.length - 1] == '/' || arr[arr.length - 1] == undefined)  && _this.value == '/') {
+            res.value = res.value;
+        } else if ( (arr[arr.length - 1] == '+' || arr[arr.length - 1] == undefined)  && _this.value == '+') {
+            res.value = res.value;
+        } else if ( (arr[arr.length - 1] == '-')  && _this.value == '-') {
+            res.value = res.value;
+        }else if ( (arr[arr.length - 1] == '.' || arr[arr.length - 1] == undefined)  && _this.value == '.') {
+            res.value = res.value;
+        }else if(((arr[arr.length - 1] == '-') || (arr[arr.length - 1] == '+') || (arr[arr.length - 1] == '/') || (arr[arr.length - 1] == '*') || (arr[arr.length - 1] == '.')) && (_this.value == '/' || _this.value == '*' || _this.value == '-' || _this.value == '+' || _this.value == '.')  ){ //Меняет знак в калькуляторе
+            arr[arr.length - 1] = _this.value;
+            var arr = arr.join('');
+            res.value = arr;
+        }else{
+            res.value += _this.value;
+        }
+    }
+    function doIt() {
+        if(res.value.length>1){
+            res.value = eval(res.value);
+        }
+    }
+    function Clear() {
+        res.value = '';
+    }
+    console.log(typeof (res.value));
+
+</script>
+
+</body>
+</html>
